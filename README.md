@@ -1,12 +1,17 @@
 This application requires the following packages:
 ==================================================
 
-flask
-flask.ext.login
-flask_login
-flask.ext.sqlalchemy
-sqlalchemy
-Bio
+* flask
+
+* flask.ext.login
+
+* flask_login
+
+* flask.ext.sqlalchemy
+
+* sqlalchemy
+
+* Bio
 
 
 To start the application:
