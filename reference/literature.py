@@ -128,24 +128,19 @@ class ReferenceLink():
 
                 feat_no_list = []
             
-                topic1 = ''
-                topic2 = ''
+                topic = ''
                 if 'Add to' in task:
-                    topic1 = 'Non-focused set'
+                    topic = 'Additional Literature'
                 elif 'Review' in task:
-                    topic1 = task
-                    topic2 = 'Focused set'
+                    topic = task
                 else:
-                    topic1 = 'Focused set'
+                    topic = 'Primary Literature'
             
                 if 'Review' in task or 'Add to' in task:
                     task = 'Gene Link'
 
                 message += "Curation_task = '" + task
-                message += "', literature_topic = '" + topic1 + "'"
-                
-                if topic2:
-                    message += " and '" + topic2 + "'"
+                message += "', literature_topic = '" + topic + "'"
                 message += ", gene = "
                  
                 for name in genes:
@@ -163,21 +158,19 @@ class ReferenceLink():
                 message += "<br>"
             
                 ## insert into lit_guide + litguide_feat
-                for topic in [topic1, topic2]:
-                    if topic == '':
-                        continue
-                    if topic_added.has_key(topic):
-                        litguide_no = topic_added[topic]
-                    else:
-                        litguide_no = LitGuide.insert(ref_no, topic, self.user)
-                        topic_added[topic] = litguide_no
             
-                    for feat_no in feat_no_list:
-                        key = (feat_no, litguide_no)
-                        if lg_feat_hash.has_key(key):
-                            continue
-                        lg_feat_hash[key] = 1
-                        LitGuideFeat.insert(feat_no, litguide_no)
+                if topic_added.has_key(topic):
+                    litguide_no = topic_added[topic]
+                else:
+                    litguide_no = LitGuide.insert(ref_no, topic, self.user)
+                    topic_added[topic] = litguide_no
+            
+                for feat_no in feat_no_list:
+                    key = (feat_no, litguide_no)
+                    if lg_feat_hash.has_key(key):
+                        continue
+                    lg_feat_hash[key] = 1
+                    LitGuideFeat.insert(feat_no, litguide_no)
                     
             else:   ## no gene name provided
 
