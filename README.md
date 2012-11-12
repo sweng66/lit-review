@@ -14,6 +14,14 @@ This application requires the following packages:
 * Bio
 
 
+Configuration:
+====================
+
+* fix the Config.py to point to your database, user/password, port, etc
+
+* fix the static/js/local.js to point to your server root url
+
+
 To start the application:
 ==========================
 
